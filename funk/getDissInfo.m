@@ -1,8 +1,16 @@
-function demo = getDissInfo()
-% GETDISSINFO.M: save subject info dialog to structure
-%   Detailed explanation goes here
-%studyDir = uigetdir('top study directory');
-studyDir = '/Volumes/black/sync/google-drive/Projects/dsd';
+function demo = getSubInfo()
+% GETDISSINFO.M %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   usage: demo = getSubInfo()
+%   takes no input, saves harvested subject info dialog to a structure, demo
+%
+%   author: wem3
+%   written: 141031
+%   modified: 141104 ~wem3
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% prompt for study directory (highest level)
+studyDir = uigetdir('top study directory');
 % set subject specific parameters
 prompt = {...
 'name: subName = ',...
@@ -32,11 +40,6 @@ demo.DOB = DOB;
 demo.DOstudy = datestr(now);
 
 subInfoMat = [subID,'_demoOut.mat'];
-
-% % nuke the debug sub
-% if ( strcmp(subID,'sub999') && isdir(subDir) )
-%   rmdir(subDir);
-% end
 
 % crash out if subInfoMat exists, otherwise save
 if exist(subInfoMat,'file')
