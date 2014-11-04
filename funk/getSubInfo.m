@@ -1,5 +1,5 @@
 function demo = getSubInfo()
-% GETDISSINFO.M %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GETSUBINFO.M %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %   usage: demo = getSubInfo()
 %   takes no input, saves harvested subject info dialog to a structure, demo
