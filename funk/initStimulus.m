@@ -1,36 +1,43 @@
-function [ stim ] = initStimulus( demo, pos, coinFile, taskName )
-% % initStimulus.m ***********************************************
+function [ stim ] = initStimulus( demo, pos, coinFile, task )
+% % INITSTIMULUS.m %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   set up the button box, dump
+%   set up the stimulus for dsd task
 %
-%******************************************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Written by wem3
 %
 % last modified 2014/10/31
 %
-%******************************************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Dependencies:
-%    demo (structure output from getDissInfo.m)
-%    makeCoinTextures.m
+%    demo (structure output from getSubInfo.m)
 %
-% Used By:s
 %
-%******************************************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % check for coinFile
 if isempty(coinFile)
   coinFile = uigetfile('select image file for coin');
 end
 
-% check for stimFile
-stimFile = ([demo.subID,'_',taskName,'.txt']);
+% check for taskFile (with stimulus/condition onset info)
+taskFile = ([demo.subID,'_',taskName,'.txt']);
 if ~exist(stimFile,'file')
-  stimFile = uigetfile('select .txt file with stimulus matrix');
+  taskFile = uigetfile('select .txt file with trial matrix');
 else
   trialMatrix = dlmread(stimFile);
 end
+
+% check for statementFile (with list of 90 statements)
+statementFile = ([demo.subID,'_',taskName,'_statements.txt']);
+if ~exist(statementFile,'file')
+  statementFile = uigetfile('select .txt file with list of statements');
+else
+  stim.statements(:,1) = textread(statementFile,'%s','delimiter','\n');
+end
+
 
 stim.task = taskName;
 stim.numTrials = length(trialMatrix);
@@ -76,31 +83,8 @@ for tCount = 1:(stim.numTrials)
   stim.discoJitter{tCount}  = trialMatrix(tCount,7);
 end
 
-
-stim.statement = {'I shower in the morning'
-'I hate rainy days'
-'I make my own lunch'
-'I want to learn to surf'
-'I hate pulling weeds'
-'I keep a tidy bedroom'
-'I hate spicy mustard'};
 stim.color.self = stimColors(1);
 stim.color.friend = stimColors(2);
 stim.color.parent = stimColors(3);
 stim.text = sText;
 end
-% read in coin image, store for [1 2 3 4 0] coins in stim structure
-% (note, will need to make texture later)
-% stim.data.subID = demo.subID;
-% stim.data.name = taskName;
-% stim.data.numTrials = length(trialMatrix);
-% stim.data.multiBandStartTime = NaN;
-% stim.data.triggerPulseTime = NaN;
-% stim.data.trialNum = trialMatrix(:,1);
-% stim.data.trialOnset = NaN(stim.task.numTrials,1);
-% stim.data.choiceOnset = NaN(stim.task.numTrials,1);
-% stim.data.choiceResponse = NaN(stim.task.numTrials,1);
-% stim.data.choiceRT = NaN(stim.task.numTrials,1);
-% stim.data.discoOnset = NaN(stim.task.numTrials,1);
-% stim.data.discoResponse = NaN(stim.task.numTrials,1);
-% stim.data.discoRT = NaN(stim.task.numTrials,1);
