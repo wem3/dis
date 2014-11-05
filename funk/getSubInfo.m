@@ -1,4 +1,4 @@
-function demo = getSubInfo()
+function info = getSubInfo()
 % GETSUBINFO.M %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %   usage: demo = getSubInfo()
@@ -13,39 +13,37 @@ function demo = getSubInfo()
 studyDir = uigetdir('top study directory');
 % set subject specific parameters
 prompt = {...
-'name: subName = ',...
 'subID: subID = ',...
+'study directory: studyDir = ',...
+'name: subName = ',...
 'friend: friendName = ',...
 'parent: parentName = ',...
 'gender: subGender = ',...
-'birthday: DOB = '};
+'birthday: DOB = ',...
+'handedness: hand = ',...
+'experimentor: exptID = '};
 dTitle = 'define subject specific variables';
 nLines = 1;
-def = {'Subastian','999','Ricky','Mom','M','04-Jul-1994'};
+def = { '999', '~/Desktop/dis' , 'Subastian' , 'Ricky' , 'Mom' , 'M' , '04-Jul-1994' , 'R' , 'wem3' };
 manualInput = inputdlg(prompt,dTitle,nLines,def);
-subName = manualInput{1};
-subID = ['sub',manualInput{2}];
-friendName = manualInput{3};
-parentName = manualInput{4};
-subGender = manualInput{5};
-DOB = manualInput{6};
+info.subID = ['sub',manualInput{1}];
+info.studyDir = manualInput{2};
+info.subName = manualInput{3};
+info.friendName = manualInput{4};
+info.parentName = manualInput{5};
+info.subGender = manualInput{6};
+info.DOB = manualInput{7};
+info.hand = manualInput{8};
+info.exptID = manualInput{9};
+info.exptDate = datestr(now);
 
-% also store to demo structure
-demo.name = subName;
-demo.subID = subID;
-demo.friend = friendName;
-demo.parent = parentName;
-demo.gender = subGender;
-demo.DOB = DOB;
-demo.DOstudy = datestr(now);
-
-subInfoMat = [subID,'_demoOut.mat'];
+subInfoMat = [subID,'_disInfo.mat'];
 
 % crash out if subInfoMat exists, otherwise save
 if exist(subInfoMat,'file')
   error([subID, ' already has an info.mat file'])
 else
-  save(subInfoMat,'demo');
+  save(subInfoMat,'info');
 end
 
 return

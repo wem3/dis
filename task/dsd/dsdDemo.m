@@ -15,7 +15,7 @@ close all; clear all; Screen('CloseAll');
 studyDir = '/Volumes/black/sync/Projects/dsd/code/demo'; % hardcoded for debug
 delete('sub999_demoOut.mat'); % hardcoded for debug
 % call getDissInfo to get subject info
-demo = getDissInfo();
+demo = getSubInfo();
 
   % initialize the screen
   [win, winBox, pos, experimentStart] = initScreen();
@@ -70,13 +70,13 @@ demo = getDissInfo();
     else
         choiceKey = 0;
     end
-    
+
     % this looks clunky, but it's more consistent and faster than any other
     % way I could figure out to correctly check the choiceKey against a
     % vector. Order is based on likelihood of having selected that key,
     % based on which finger is assigned on the button box (less relevant
     % for keyboard)
-    
+
     switch choiceKey
         case 0
             DrawFormattedText(win, 'too slow!', 'center', pos.yStatement, pos.white);
@@ -113,12 +113,12 @@ demo = getDissInfo();
 %     else
 %         responseBox = [0 0 1 1];
 %         responseColor = pos.black;
-%     end  
+%     end
 
     % blink a box around the chosen answer
     drawChoiceFeedback(2,win,tCount,stim,pos,choiceResponse);
     % Screen('Flip',win);
-   
+
     % draw the option they chose
     drawChoice(win,tCount,stim,pos,choiceResponse);
     % draw the statement

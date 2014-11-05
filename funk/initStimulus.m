@@ -1,4 +1,4 @@
-function [ stim ] = initStimulus( demo, pos, coinFile, task )
+function [ stim ] = initStimulus( info, pos, coinFile, task )
 % % INITSTIMULUS.m %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %   set up the stimulus for dsd task
@@ -23,11 +23,11 @@ if isempty(coinFile)
 end
 
 % check for taskFile (with stimulus/condition onset info)
-taskFile = ([demo.subID,'_',taskName,'.txt']);
-if ~exist(stimFile,'file')
+taskFile = ( [ demo.subID, '_' , task , '.txt' ] );
+if ~exist(taskFile,'file')
   taskFile = uigetfile('select .txt file with trial matrix');
 else
-  trialMatrix = dlmread(stimFile);
+  trialMatrix = dlmread(taskFile);
 end
 
 % check for statementFile (with list of 90 statements)
