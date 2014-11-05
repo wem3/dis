@@ -1,18 +1,19 @@
-function [ stim ] = initStimulus( info, pos, coinFile, task )
+function [ stim ] = initStimulus( info, pos, coinFile, task, run )
 % % INITSTIMULUS.m %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   usage: [ stim ] = initStimulus( info , pos , coinFile , task )
 %
-%   set up the stimulus for dsd task
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Written by wem3
-%
-% last modified 2014/10/31
+%   harvest info from .txt files, initialize stimuli PTB-3 task
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Dependencies:
-%    demo (structure output from getSubInfo.m)
+%   author: wem3
+%   written: 141031
+%   modified: 141104 ~wem3
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% dependencies:
+%    info (structure output from getSubInfo.m)
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -23,7 +24,7 @@ if isempty(coinFile)
 end
 
 % check for taskFile (with stimulus/condition onset info)
-taskFile = ( [ demo.subID, '_' , task , '.txt' ] );
+taskFile = ( info.studyDir, filesep, 'paradigm', filesep, 'input', filesep [ info.subID, '_' , task , '.txt' ] );
 if ~exist(taskFile,'file')
   taskFile = uigetfile('select .txt file with trial matrix');
 else
@@ -37,7 +38,6 @@ if ~exist(statementFile,'file')
 else
   stim.statements(:,1) = textread(statementFile,'%s','delimiter','\n');
 end
-
 
 stim.task = taskName;
 stim.numTrials = length(trialMatrix);

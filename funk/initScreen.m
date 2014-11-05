@@ -1,19 +1,17 @@
 function [win, winBox, pos, experimentStart] = initScreen()
-% % initScreen.m ***********************************************
+% % INITSCREEN.m %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   usage: [win, winBox, pos, experimentStart] = initScreen()
 %
-%   set up screen for PTB-3
+%   initializes screen & set params for tasks in PTB-3
 %
-%******************************************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Written by wem3
+%   author: wem3
+%   written: 141031
+%   modified: 141104 ~wem3
 %
-% last modified 2014/10/31
-%
-%******************************************************************
-%
-% Dependencies:
-%
-%******************************************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %% screen
 Screen('Preference', 'VisualDebugLevel', 1);
 Screen('Preference', 'SkipSyncTests', 1); % super dangerous, man

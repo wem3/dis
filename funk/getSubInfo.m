@@ -36,8 +36,11 @@ info.DOB = manualInput{7};
 info.hand = manualInput{8};
 info.exptID = manualInput{9};
 info.exptDate = datestr(now);
+info.inputDir = [studyDir,filesep,'paradigm',filesep,'input'];
+info.outputDir = [studyDir,filesep,'paradigm',filesep,'output'];
+info.throughputDir = info.inputDir = [studyDir,filesep,'paradigm',filesep,'throughput'];
 
-subInfoMat = [subID,'_disInfo.mat'];
+subInfoMat = [info.throughputDir, filesep ([subID,'_disInfo.mat'])];
 
 % crash out if subInfoMat exists, otherwise save
 if exist(subInfoMat,'file')
