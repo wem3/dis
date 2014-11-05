@@ -7,7 +7,7 @@ function dsdTask()
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% try
+try
 % switch nargin
 %   case 0
 %     subID = input('Enter subID (>> "sub999" ): ', 's');

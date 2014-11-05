@@ -38,7 +38,7 @@ info.exptID = manualInput{9};
 info.exptDate = datestr(now);
 info.inputDir = [studyDir,filesep,'paradigm',filesep,'input'];
 info.outputDir = [studyDir,filesep,'paradigm',filesep,'output'];
-info.throughputDir = info.inputDir = [studyDir,filesep,'paradigm',filesep,'throughput'];
+info.throughputDir = [studyDir,filesep,'paradigm',filesep,'throughput'];
 
 subInfoMat = [info.throughputDir, filesep ([subID,'_disInfo.mat'])];
 
